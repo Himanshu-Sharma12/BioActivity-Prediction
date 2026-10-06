@@ -12,6 +12,8 @@ import {
   X, 
   Minimize2, 
   Maximize2,
+  ChevronUp,
+  ChevronDown,
   Mic,
   MicOff,
   Bot,
@@ -308,9 +310,9 @@ export default function AdvancedChatbot({ className }: AdvancedChatbotProps) {
   return (
     <Card 
       className={cn(
-        "fixed bottom-6 right-6 z-50 transition-all duration-300 shadow-2xl border border-border bg-white dark:bg-slate-900 rounded-2xl overflow-hidden flex flex-col",
+        "fixed bottom-6 right-6 z-50 transition-all duration-300 shadow-2xl border border-border bg-card text-card-foreground rounded-2xl overflow-hidden flex flex-col",
         isMinimized 
-          ? "w-80 h-14" 
+          ? "w-auto min-w-[290px] sm:min-w-[340px] max-w-[92vw] h-auto shadow-xl" 
           : isExpanded 
             ? "w-[92vw] sm:w-[540px] h-[720px] max-h-[88vh]" 
             : "w-[92vw] sm:w-[420px] h-[580px] max-h-[82vh]",
@@ -318,66 +320,74 @@ export default function AdvancedChatbot({ className }: AdvancedChatbotProps) {
       )}
     >
       {/* Header */}
-      <CardHeader className="p-3.5 bg-slate-50 dark:bg-slate-800/80 border-b border-border/80 flex flex-row items-center justify-between space-y-0 shrink-0">
-        <div className="flex items-center space-x-2.5">
-          <div className="relative">
-            <div className="w-8 h-8 rounded-lg bg-gradient-to-tr from-primary to-indigo-600 flex items-center justify-center text-white shadow-sm">
+      <CardHeader 
+        className={cn(
+          "px-4 py-3 bg-muted/40 flex flex-row items-center justify-between space-y-0 shrink-0 select-none",
+          isMinimized ? "cursor-pointer border-b-0 hover:bg-muted/70 transition-colors" : "border-b border-border/80"
+        )}
+        onClick={isMinimized ? () => setIsMinimized(false) : undefined}
+      >
+        <div className="flex items-center space-x-3 min-w-0 pr-2">
+          <div className="relative shrink-0">
+            <div className="w-8 h-8 rounded-xl bg-gradient-to-tr from-primary to-indigo-600 flex items-center justify-center text-white shadow-sm">
               <Bot className="h-4 w-4" />
             </div>
-            <span className="absolute -bottom-0.5 -right-0.5 w-2.5 h-2.5 rounded-full bg-emerald-500 ring-2 ring-white dark:ring-slate-900" />
+            <span className="absolute -bottom-0.5 -right-0.5 w-2.5 h-2.5 rounded-full bg-emerald-500 ring-2 ring-card" />
           </div>
-          <div>
-            <div className="text-sm font-bold text-foreground flex items-center gap-1.5 leading-none">
-              AI Chemistry Copilot
-              <Badge variant="outline" className="text-[9px] px-1.5 py-0 font-semibold bg-primary/10 text-primary border-primary/20">
+          <div className="min-w-0 flex-1">
+            <div className="text-sm font-bold text-foreground flex items-center gap-1.5 leading-tight truncate">
+              <span>AI Chemistry Copilot</span>
+              <Badge variant="outline" className="text-[9px] px-1.5 py-0 font-semibold bg-primary/10 text-primary border-primary/20 shrink-0">
                 Gemini AI
               </Badge>
             </div>
-            <span className="text-[10px] text-muted-foreground font-medium">
-              SMILES · Bioactivity · Safety
-            </span>
+            <p className="text-[11px] text-muted-foreground font-medium truncate mt-0.5 leading-snug">
+              {isMinimized ? "Click to open chat" : "SMILES · Bioactivity · Safety"}
+            </p>
           </div>
         </div>
 
         {/* Header Action Controls */}
-        <div className="flex items-center space-x-1">
-          <Button
-            variant="ghost"
-            size="icon"
-            onClick={handleClearHistory}
-            className="h-7 w-7 text-muted-foreground hover:text-foreground"
-            title="Clear Chat History"
-          >
-            <Trash2 className="h-3.5 w-3.5" />
-          </Button>
-
+        <div className="flex items-center space-x-1 shrink-0" onClick={(e) => e.stopPropagation()}>
           {!isMinimized && (
-            <Button
-              variant="ghost"
-              size="icon"
-              onClick={() => setIsExpanded(!isExpanded)}
-              className="h-7 w-7 text-muted-foreground hover:text-foreground"
-              title={isExpanded ? "Collapse" : "Expand"}
-            >
-              {isExpanded ? <Minimize2 className="h-3.5 w-3.5" /> : <Maximize2 className="h-3.5 w-3.5" />}
-            </Button>
+            <>
+              <Button
+                variant="ghost"
+                size="icon"
+                onClick={handleClearHistory}
+                className="h-7 w-7 text-muted-foreground hover:text-foreground hover:bg-muted/80 rounded-lg"
+                title="Clear Chat History"
+              >
+                <Trash2 className="h-3.5 w-3.5" />
+              </Button>
+
+              <Button
+                variant="ghost"
+                size="icon"
+                onClick={() => setIsExpanded(!isExpanded)}
+                className="h-7 w-7 text-muted-foreground hover:text-foreground hover:bg-muted/80 rounded-lg"
+                title={isExpanded ? "Collapse" : "Expand"}
+              >
+                {isExpanded ? <Minimize2 className="h-3.5 w-3.5" /> : <Maximize2 className="h-3.5 w-3.5" />}
+              </Button>
+            </>
           )}
 
           <Button
             variant="ghost"
             size="icon"
             onClick={() => setIsMinimized(!isMinimized)}
-            className="h-7 w-7 text-muted-foreground hover:text-foreground"
-            title={isMinimized ? "Restore" : "Minimize"}
+            className="h-7 w-7 text-muted-foreground hover:text-foreground hover:bg-muted/80 rounded-lg"
+            title={isMinimized ? "Open Chat" : "Minimize"}
           >
-            <Minimize2 className="h-3.5 w-3.5" />
+            {isMinimized ? <ChevronUp className="h-4 w-4" /> : <ChevronDown className="h-4 w-4" />}
           </Button>
 
           <Button
             variant="ghost"
             size="icon"
             onClick={() => setIsOpen(false)}
-            className="h-7 w-7 text-muted-foreground hover:text-foreground"
+            className="h-7 w-7 text-muted-foreground hover:text-foreground hover:bg-muted/80 rounded-lg"
             title="Close Chat"
           >
             <X className="h-3.5 w-3.5" />
@@ -430,7 +440,7 @@ export default function AdvancedChatbot({ className }: AdvancedChatbotProps) {
                           "rounded-2xl px-3.5 py-2.5 text-xs leading-relaxed shadow-sm",
                           isUser
                             ? "bg-gradient-to-r from-primary to-indigo-600 text-white rounded-tr-sm font-normal"
-                            : "bg-slate-100 dark:bg-slate-800 text-foreground border border-slate-200 dark:border-slate-700/80 rounded-tl-sm whitespace-pre-wrap"
+                            : "bg-muted/80 text-foreground border border-border/70 rounded-tl-sm whitespace-pre-wrap"
                         )}
                       >
                         {message.text}
@@ -548,7 +558,7 @@ export default function AdvancedChatbot({ className }: AdvancedChatbotProps) {
                   <div className="w-7 h-7 rounded-lg bg-primary/10 text-primary flex items-center justify-center shrink-0">
                     <Loader2 className="h-3.5 w-3.5 animate-spin" />
                   </div>
-                  <div className="px-3 py-2 rounded-xl bg-slate-100 dark:bg-slate-800 border border-border text-xs flex items-center gap-1.5">
+                  <div className="px-3 py-2 rounded-xl bg-muted border border-border/70 text-xs flex items-center gap-1.5 text-foreground">
                     <span>AI Chemist is deducing molecular structure</span>
                     <span className="animate-pulse">...</span>
                   </div>
@@ -558,7 +568,7 @@ export default function AdvancedChatbot({ className }: AdvancedChatbotProps) {
           </ScrollArea>
 
           {/* Quick Reply Pills */}
-          <div className="px-3 py-2 bg-slate-50 dark:bg-slate-800/40 border-t border-border overflow-x-auto">
+          <div className="px-3 py-2 bg-muted/30 border-t border-border overflow-x-auto">
             <div className="flex items-center gap-1.5 w-max">
               {CHEMISTRY_QUICK_REPLIES.map((item, idx) => (
                 <button
