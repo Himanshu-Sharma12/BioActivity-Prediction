@@ -133,20 +133,20 @@ export default function MolecularVisualization({ analysis, isAnalyzing }: Molecu
   const renderStructure = () => (
     <div className="text-center" data-testid="section-structure-display">
       {image2d ? (
-        <div className="flex flex-col items-center space-y-3">
-          <div className="p-3 bg-white rounded-xl shadow-sm border border-slate-200 inline-flex items-center justify-center">
+        <div className="flex flex-col items-center space-y-2.5">
+          <div className="p-2.5 bg-white rounded-xl shadow-xs border border-slate-200 inline-flex items-center justify-center">
             <img
               src={image2d}
               alt={`${compound?.name || getMolecularName(compound?.smiles || '')} 2D structure`}
-              className="max-h-[200px] w-auto object-contain"
+              className="max-h-[155px] w-auto object-contain"
               data-testid="image-molecular-structure"
             />
           </div>
-          <div className="space-y-1">
-            <p className="text-sm font-medium text-foreground" data-testid="text-compound-name">
+          <div className="space-y-0.5 max-w-full px-2">
+            <p className="text-sm font-semibold text-foreground truncate" data-testid="text-compound-name">
               {compound?.name || getMolecularName(compound?.smiles || '')}
             </p>
-            <p className="text-xs text-muted-foreground" data-testid="text-smiles-notation">
+            <p className="text-xs text-muted-foreground font-mono truncate max-w-sm mx-auto" title={compound?.smiles} data-testid="text-smiles-notation">
               SMILES: {compound?.smiles}
             </p>
             {prediction && (
@@ -225,8 +225,7 @@ export default function MolecularVisualization({ analysis, isAnalyzing }: Molecu
           
           <div 
             ref={containerRef}
-            className="border border-border rounded-lg p-4 bg-muted/30 overflow-hidden" 
-            style={{ height: '300px' }}
+            className="border border-border rounded-lg p-3 bg-muted/20 overflow-hidden flex items-center justify-center min-h-[310px]" 
             data-testid="container-structure-display"
           >
             <div className="h-full w-full flex items-center justify-center">

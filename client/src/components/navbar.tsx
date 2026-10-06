@@ -70,8 +70,8 @@ export default function Navbar() {
                   href={item.path}
                   className={`flex items-center space-x-2 px-3.5 py-2 rounded-lg text-sm font-medium transition-all duration-200 ${
                     active
-                      ? "bg-white dark:bg-card text-foreground shadow-xs border border-border font-semibold"
-                      : "text-muted-foreground hover:text-foreground hover:bg-white/60 dark:hover:bg-card/50"
+                      ? "bg-card text-foreground shadow-xs border border-border font-semibold"
+                      : "text-muted-foreground hover:text-foreground hover:bg-accent/60"
                   }`}
                 >
                   <Icon className={`w-4 h-4 ${active ? "text-primary" : "text-muted-foreground"}`} />

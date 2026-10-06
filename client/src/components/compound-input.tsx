@@ -1029,7 +1029,7 @@ export default function CompoundInput({
                     {uploadedCompounds.slice(0, 10).map((c, idx) => (
                       <div 
                         key={idx} 
-                        className="flex items-center justify-between text-xs p-2 rounded bg-white dark:bg-slate-800/50 hover:bg-accent transition-colors"
+                        className="flex items-center justify-between text-xs p-2 rounded bg-card border border-border/50 hover:bg-accent transition-colors"
                       >
                         <div className="flex-1 flex items-center gap-3">
                           <span className="text-muted-foreground font-medium w-6">{idx + 1}.</span>
@@ -1277,7 +1277,7 @@ export default function CompoundInput({
 
             {/* Progress & Status */}
             {batchInfo && (
-              <div className="space-y-3 bg-white dark:bg-slate-900 p-4 rounded-lg border">
+              <div className="space-y-3 bg-card p-4 rounded-lg border border-border">
                 <div className="flex items-center justify-between text-sm">
                   <div className="flex items-center gap-2">
                     <div className={`h-2 w-2 rounded-full animate-pulse ${

@@ -199,14 +199,14 @@ export default function SafetyPage() {
         <div className="grid grid-cols-1 xl:grid-cols-3 gap-6">
           {/* Molecular Description Card */}
           <div className="xl:col-span-3 mb-6">
-            <Card className="border-2 border-primary/20 bg-gradient-to-br from-primary/5 to-purple-500/5">
+            <Card className="border border-border/80 bg-card shadow-sm">
               <CardHeader>
                 <CardTitle className="flex items-center gap-2">
                   <div className="w-10 h-10 rounded-lg bg-gradient-to-br from-primary to-purple-600 flex items-center justify-center shadow-lg">
                     <Atom className="w-5 h-5 text-white" />
                   </div>
                   <div>
-                    <div className="text-xl font-bold">Molecular Description</div>
+                    <div className="text-xl font-bold text-foreground">Molecular Description</div>
                     <div className="text-sm text-muted-foreground font-normal">
                       Detailed physicochemical properties
                     </div>
@@ -216,16 +216,16 @@ export default function SafetyPage() {
               <CardContent>
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
                   {/* Molecular Weight */}
-                  <div className="group relative overflow-hidden rounded-lg border border-border/50 bg-card p-4 transition-all hover:border-primary/50 hover:shadow-md">
-                    <div className="flex items-start gap-3">
-                      <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-purple-100 dark:bg-purple-950 transition-colors">
+                  <div className="relative overflow-hidden rounded-lg border border-border/60 bg-card/90 p-4 transition-all hover:border-primary/50 hover:bg-accent/25 hover:shadow-md">
+                    <div className="relative z-10 flex items-start gap-3">
+                      <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-purple-100 dark:bg-purple-950/80 transition-colors">
                         <Weight className="h-5 w-5 text-purple-600 dark:text-purple-400" />
                       </div>
                       <div className="flex-1 min-w-0">
                         <p className="text-xs font-medium text-muted-foreground">
                           Molecular Weight
                         </p>
-                        <p className="mt-1 text-lg font-bold truncate">
+                        <p className="mt-1 text-lg font-bold text-foreground truncate">
                           {currentAnalysis.prediction.descriptors.molecularWeight?.toFixed(2) || 'N/A'} g/mol
                         </p>
                         <p className="text-xs text-muted-foreground mt-0.5">
@@ -233,13 +233,12 @@ export default function SafetyPage() {
                         </p>
                       </div>
                     </div>
-                    <div className="absolute inset-0 bg-gradient-to-r from-primary/5 to-purple-500/5 opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none" />
                   </div>
 
                   {/* LogP */}
-                  <div className="group relative overflow-hidden rounded-lg border border-border/50 bg-card p-4 transition-all hover:border-primary/50 hover:shadow-md">
-                    <div className="flex items-start gap-3">
-                      <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-cyan-100 dark:bg-cyan-950 transition-colors">
+                  <div className="relative overflow-hidden rounded-lg border border-border/60 bg-card/90 p-4 transition-all hover:border-primary/50 hover:bg-accent/25 hover:shadow-md">
+                    <div className="relative z-10 flex items-start gap-3">
+                      <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-cyan-100 dark:bg-cyan-950/80 transition-colors">
                         <Droplet className="h-5 w-5 text-cyan-600 dark:text-cyan-400" />
                       </div>
                       <div className="flex-1 min-w-0">
@@ -256,7 +255,7 @@ export default function SafetyPage() {
                             </Badge>
                           )}
                         </div>
-                        <p className="mt-1 text-lg font-bold truncate">
+                        <p className="mt-1 text-lg font-bold text-foreground truncate">
                           {currentAnalysis.prediction.descriptors.logP?.toFixed(2) || 'N/A'}
                         </p>
                         <p className="text-xs text-muted-foreground mt-0.5">
@@ -264,20 +263,19 @@ export default function SafetyPage() {
                         </p>
                       </div>
                     </div>
-                    <div className="absolute inset-0 bg-gradient-to-r from-primary/5 to-purple-500/5 opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none" />
                   </div>
 
                   {/* H-Bond Donors */}
-                  <div className="group relative overflow-hidden rounded-lg border border-border/50 bg-card p-4 transition-all hover:border-primary/50 hover:shadow-md">
-                    <div className="flex items-start gap-3">
-                      <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-green-100 dark:bg-green-950 transition-colors">
+                  <div className="relative overflow-hidden rounded-lg border border-border/60 bg-card/90 p-4 transition-all hover:border-primary/50 hover:bg-accent/25 hover:shadow-md">
+                    <div className="relative z-10 flex items-start gap-3">
+                      <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-green-100 dark:bg-green-950/80 transition-colors">
                         <Activity className="h-5 w-5 text-green-600 dark:text-green-400" />
                       </div>
                       <div className="flex-1 min-w-0">
                         <p className="text-xs font-medium text-muted-foreground">
                           H-Bond Donors
                         </p>
-                        <p className="mt-1 text-lg font-bold truncate">
+                        <p className="mt-1 text-lg font-bold text-foreground truncate">
                           {currentAnalysis.prediction.descriptors.hbdCount?.toString() || 'N/A'}
                         </p>
                         <p className="text-xs text-muted-foreground mt-0.5">
@@ -285,20 +283,19 @@ export default function SafetyPage() {
                         </p>
                       </div>
                     </div>
-                    <div className="absolute inset-0 bg-gradient-to-r from-primary/5 to-purple-500/5 opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none" />
                   </div>
 
                   {/* H-Bond Acceptors */}
-                  <div className="group relative overflow-hidden rounded-lg border border-border/50 bg-card p-4 transition-all hover:border-primary/50 hover:shadow-md">
-                    <div className="flex items-start gap-3">
-                      <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-orange-100 dark:bg-orange-950 transition-colors">
+                  <div className="relative overflow-hidden rounded-lg border border-border/60 bg-card/90 p-4 transition-all hover:border-primary/50 hover:bg-accent/25 hover:shadow-md">
+                    <div className="relative z-10 flex items-start gap-3">
+                      <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-orange-100 dark:bg-orange-950/80 transition-colors">
                         <Circle className="h-5 w-5 text-orange-600 dark:text-orange-400" />
                       </div>
                       <div className="flex-1 min-w-0">
                         <p className="text-xs font-medium text-muted-foreground">
                           H-Bond Acceptors
                         </p>
-                        <p className="mt-1 text-lg font-bold truncate">
+                        <p className="mt-1 text-lg font-bold text-foreground truncate">
                           {currentAnalysis.prediction.descriptors.hbaCount?.toString() || 'N/A'}
                         </p>
                         <p className="text-xs text-muted-foreground mt-0.5">
@@ -306,20 +303,19 @@ export default function SafetyPage() {
                         </p>
                       </div>
                     </div>
-                    <div className="absolute inset-0 bg-gradient-to-r from-primary/5 to-purple-500/5 opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none" />
                   </div>
 
                   {/* TPSA */}
-                  <div className="group relative overflow-hidden rounded-lg border border-border/50 bg-card p-4 transition-all hover:border-primary/50 hover:shadow-md">
-                    <div className="flex items-start gap-3">
-                      <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-pink-100 dark:bg-pink-950 transition-colors">
+                  <div className="relative overflow-hidden rounded-lg border border-border/60 bg-card/90 p-4 transition-all hover:border-primary/50 hover:bg-accent/25 hover:shadow-md">
+                    <div className="relative z-10 flex items-start gap-3">
+                      <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-pink-100 dark:bg-pink-950/80 transition-colors">
                         <TrendingUp className="h-5 w-5 text-pink-600 dark:text-pink-400" />
                       </div>
                       <div className="flex-1 min-w-0">
                         <p className="text-xs font-medium text-muted-foreground">
                           TPSA
                         </p>
-                        <p className="mt-1 text-lg font-bold truncate">
+                        <p className="mt-1 text-lg font-bold text-foreground truncate">
                           {currentAnalysis.prediction.descriptors.tpsa?.toFixed(2) || 'N/A'} Å²
                         </p>
                         <p className="text-xs text-muted-foreground mt-0.5">
@@ -327,20 +323,19 @@ export default function SafetyPage() {
                         </p>
                       </div>
                     </div>
-                    <div className="absolute inset-0 bg-gradient-to-r from-primary/5 to-purple-500/5 opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none" />
                   </div>
 
                   {/* Rotatable Bonds */}
-                  <div className="group relative overflow-hidden rounded-lg border border-border/50 bg-card p-4 transition-all hover:border-primary/50 hover:shadow-md">
-                    <div className="flex items-start gap-3">
-                      <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-yellow-100 dark:bg-yellow-950 transition-colors">
+                  <div className="relative overflow-hidden rounded-lg border border-border/60 bg-card/90 p-4 transition-all hover:border-primary/50 hover:bg-accent/25 hover:shadow-md">
+                    <div className="relative z-10 flex items-start gap-3">
+                      <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-yellow-100 dark:bg-yellow-950/80 transition-colors">
                         <Zap className="h-5 w-5 text-yellow-600 dark:text-yellow-400" />
                       </div>
                       <div className="flex-1 min-w-0">
                         <p className="text-xs font-medium text-muted-foreground">
                           Rotatable Bonds
                         </p>
-                        <p className="mt-1 text-lg font-bold truncate">
+                        <p className="mt-1 text-lg font-bold text-foreground truncate">
                           {currentAnalysis.prediction.descriptors.rotatableBonds?.toString() || 'N/A'}
                         </p>
                         <p className="text-xs text-muted-foreground mt-0.5">
@@ -348,20 +343,19 @@ export default function SafetyPage() {
                         </p>
                       </div>
                     </div>
-                    <div className="absolute inset-0 bg-gradient-to-r from-primary/5 to-purple-500/5 opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none" />
                   </div>
 
                   {/* Compound Name */}
-                  <div className="group relative overflow-hidden rounded-lg border border-border/50 bg-card p-4 transition-all hover:border-primary/50 hover:shadow-md">
-                    <div className="flex items-start gap-3">
-                      <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-blue-100 dark:bg-blue-950 transition-colors">
+                  <div className="relative overflow-hidden rounded-lg border border-border/60 bg-card/90 p-4 transition-all hover:border-primary/50 hover:bg-accent/25 hover:shadow-md">
+                    <div className="relative z-10 flex items-start gap-3">
+                      <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-blue-100 dark:bg-blue-950/80 transition-colors">
                         <Atom className="h-5 w-5 text-blue-600 dark:text-blue-400" />
                       </div>
                       <div className="flex-1 min-w-0">
                         <p className="text-xs font-medium text-muted-foreground">
                           Compound Name
                         </p>
-                        <p className="mt-1 text-lg font-bold truncate" title={currentAnalysis.compound.name || getMolecularName(currentAnalysis.compound.smiles)}>
+                        <p className="mt-1 text-lg font-bold text-foreground truncate" title={currentAnalysis.compound.name || getMolecularName(currentAnalysis.compound.smiles)}>
                           {currentAnalysis.compound.name || getMolecularName(currentAnalysis.compound.smiles)}
                         </p>
                         <p className="text-xs text-muted-foreground mt-0.5">
@@ -369,20 +363,19 @@ export default function SafetyPage() {
                         </p>
                       </div>
                     </div>
-                    <div className="absolute inset-0 bg-gradient-to-r from-primary/5 to-purple-500/5 opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none" />
                   </div>
 
                   {/* SMILES */}
-                  <div className="group relative overflow-hidden rounded-lg border border-border/50 bg-card p-4 transition-all hover:border-primary/50 hover:shadow-md">
-                    <div className="flex items-start gap-3">
-                      <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-indigo-100 dark:bg-indigo-950 transition-colors">
+                  <div className="relative overflow-hidden rounded-lg border border-border/60 bg-card/90 p-4 transition-all hover:border-primary/50 hover:bg-accent/25 hover:shadow-md">
+                    <div className="relative z-10 flex items-start gap-3">
+                      <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-indigo-100 dark:bg-indigo-950/80 transition-colors">
                         <Layers className="h-5 w-5 text-indigo-600 dark:text-indigo-400" />
                       </div>
                       <div className="flex-1 min-w-0">
                         <p className="text-xs font-medium text-muted-foreground">
                           SMILES Notation
                         </p>
-                        <p className="mt-1 text-sm font-mono font-bold truncate" title={currentAnalysis.compound.smiles}>
+                        <p className="mt-1 text-sm font-mono font-bold text-foreground truncate" title={currentAnalysis.compound.smiles}>
                           {currentAnalysis.compound.smiles || 'N/A'}
                         </p>
                         <p className="text-xs text-muted-foreground mt-0.5">
@@ -390,7 +383,6 @@ export default function SafetyPage() {
                         </p>
                       </div>
                     </div>
-                    <div className="absolute inset-0 bg-gradient-to-r from-primary/5 to-purple-500/5 opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none" />
                   </div>
                 </div>
 

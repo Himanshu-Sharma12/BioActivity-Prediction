@@ -190,14 +190,14 @@ export default function Welcome() {
 
             {/* Quick Direct Analyzer Bar */}
             <form onSubmit={handleQuickAnalyze} className="max-w-xl mx-auto pt-2">
-              <div className="relative flex items-center shadow-md rounded-xl border border-border bg-white dark:bg-card/80 p-1.5 focus-within:border-primary focus-within:ring-2 focus-within:ring-primary/20 transition-all">
+              <div className="relative flex items-center shadow-md rounded-xl border border-border bg-card p-1.5 focus-within:border-primary focus-within:ring-2 focus-within:ring-primary/20 transition-all">
                 <Search className="w-5 h-5 ml-3 text-muted-foreground flex-shrink-0" />
                 <Input
                   type="text"
                   value={quickInput}
                   onChange={(e) => setQuickInput(e.target.value)}
                   placeholder="Enter SMILES (e.g. CCO) or Drug Name (e.g. Aspirin)..."
-                  className="border-0 bg-transparent shadow-none focus-visible:ring-0 text-sm placeholder:text-muted-foreground/70"
+                  className="border-0 bg-transparent shadow-none focus-visible:ring-0 text-sm text-foreground placeholder:text-muted-foreground/70"
                 />
                 <Button 
                   type="submit" 
@@ -212,19 +212,19 @@ export default function Welcome() {
             {/* Primary Action Buttons */}
             <div className="flex flex-wrap items-center justify-center gap-3 pt-2">
               <Link href="/analyze">
-                <Button size="lg" className="bg-gradient-to-r from-primary to-purple-600 hover:opacity-90 shadow-lg hover:shadow-primary/20 transition-all">
+                <Button size="lg" className="bg-gradient-to-r from-primary to-purple-600 hover:opacity-90 shadow-lg hover:shadow-primary/20 transition-all text-white font-medium">
                   <FlaskConical className="mr-2 w-5 h-5" />
                   Launch Workspace
                 </Button>
               </Link>
               <Link href="/draw">
-                <Button size="lg" variant="outline" className="border-border bg-white dark:bg-card/50 hover:bg-muted/50 shadow-xs">
+                <Button size="lg" variant="outline" className="border-border bg-card hover:bg-accent text-foreground shadow-xs font-medium">
                   <Paintbrush className="mr-2 w-5 h-5 text-indigo-500" />
                   2D Drawing Studio
                 </Button>
               </Link>
               <Link href="/iot-analysis">
-                <Button size="lg" variant="outline" className="border-border bg-white dark:bg-card/50 hover:bg-muted/50 shadow-xs">
+                <Button size="lg" variant="outline" className="border-border bg-card hover:bg-accent text-foreground shadow-xs font-medium">
                   <Pill className="mr-2 w-5 h-5 text-primary" />
                   Medicine Label Insights
                 </Button>
@@ -236,7 +236,7 @@ export default function Welcome() {
               {stats.map((stat, idx) => {
                 const Icon = stat.icon;
                 return (
-                  <Card key={idx} className="border-border bg-white dark:bg-card/80 shadow-sm hover:border-primary/50 transition-all hover:shadow-md">
+                  <Card key={idx} className="border-border bg-card text-card-foreground shadow-sm hover:border-primary/50 transition-all hover:shadow-md">
                     <CardContent className="p-4 space-y-1">
                       <div className="flex items-center space-x-2 text-primary">
                         <Icon className="w-4 h-4" />
@@ -279,14 +279,14 @@ export default function Welcome() {
               {benchmarkCompounds.map((compound) => (
                 <Card 
                   key={compound.name} 
-                  className="group relative overflow-hidden border-border bg-white dark:bg-card/80 shadow-sm hover:border-primary/60 hover:shadow-md transition-all duration-200 hover:-translate-y-0.5 cursor-pointer"
+                  className="group relative overflow-hidden border-border bg-card text-card-foreground shadow-sm hover:border-primary/60 hover:shadow-md transition-all duration-200 hover:-translate-y-0.5 cursor-pointer"
                   onClick={() => handleLaunchBenchmark(compound)}
                 >
                   <CardContent className="p-5 flex flex-col justify-between h-full space-y-4">
                     <div>
                       <div className="flex items-start justify-between">
                         <div>
-                          <h3 className="text-lg font-bold group-hover:text-primary transition-colors flex items-center gap-2">
+                          <h3 className="text-lg font-bold group-hover:text-primary transition-colors flex items-center gap-2 text-foreground">
                             {compound.name}
                             <ArrowRight className="w-4 h-4 opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all text-primary" />
                           </h3>
@@ -337,7 +337,7 @@ export default function Welcome() {
               {pipelineStages.map((stage, idx) => {
                 const Icon = stage.icon;
                 return (
-                  <Card key={idx} className="border-border bg-white dark:bg-card/80 shadow-sm hover:border-primary/50 transition-all">
+                  <Card key={idx} className="border-border bg-card text-card-foreground shadow-sm hover:border-primary/50 transition-all">
                     <CardContent className="p-5 space-y-3">
                       <div className="flex items-center justify-between">
                         <span className="font-mono text-xs font-bold text-primary px-2 py-0.5 rounded bg-primary/10">

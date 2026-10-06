@@ -961,16 +961,16 @@ export default function Molecular3DVisualization({ analysis, isAnalyzing }: Mole
             {/* Top-right MW badge */}
             <g transform={`translate(${viewBoxSize - 10}, 10)`}>
               <g transform="translate(-160, 0)">
-                <rect x={0} y={0} width={170} height={28} rx={8} ry={8} fill="#ffffff" opacity={0.6} />
-                <text x={10} y={19} fontSize={12} fontWeight="700" fill="#0f172a">
+                <rect x={0} y={0} width={170} height={28} rx={8} ry={8} fill="#0f172a" opacity={0.75} stroke="#334155" strokeWidth={0.8} />
+                <text x={14} y={18} fontSize={11.5} fontWeight="700" fill="#f8fafc">
                   MW: {prediction ? prediction.descriptors.molecularWeight.toFixed(2) : '—'} g/mol
                 </text>
               </g>
             </g>
             {/* Bottom center SMILES */}
             <g transform={`translate(${viewBoxSize / 2}, ${viewBoxSize - 22})`}>
-              <rect x={-Math.min(260, viewBoxSize * 0.9) / 2} y={-22} width={Math.min(260, viewBoxSize * 0.9)} height={24} rx={6} ry={6} fill="#ffffff" opacity={0.6} />
-              <text x={0} y={-3} textAnchor="middle" fontSize={12} fill="#334155">
+              <rect x={-Math.min(260, viewBoxSize * 0.9) / 2} y={-22} width={Math.min(260, viewBoxSize * 0.9)} height={24} rx={6} ry={6} fill="#0f172a" opacity={0.75} stroke="#334155" strokeWidth={0.8} />
+              <text x={0} y={-6} textAnchor="middle" fontSize={11} fill="#e2e8f0" fontFamily="monospace">
                 {(compound.smiles.length > 34 ? `${compound.smiles.slice(0,34)}…` : compound.smiles)}
               </text>
             </g>

@@ -153,7 +153,7 @@ export default function PredictionResults({ analysis, isAnalyzing, photoInsights
                     {effectiveActivities.map((a, i) => (
                       <div
                         key={`${a.targetChemblId || 'tgt'}-${i}`}
-                        className="border border-border rounded-lg p-3 bg-white dark:bg-card/50 hover:bg-slate-50 dark:hover:bg-card transition-colors space-y-1.5 shadow-xs"
+                        className="border border-border/70 rounded-lg p-3 bg-card hover:bg-accent/40 transition-colors space-y-1.5 shadow-xs"
                         data-testid={`row-activity-${i}`}
                       >
                         <div className="flex items-start justify-between gap-3">
