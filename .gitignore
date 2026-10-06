@@ -4,3 +4,37 @@ dist
 server/public
 vite.config.ts.*
 *.tar.gz
+.env
+# Runtime logs and local state (may contain request data)
+server.log
+*.log
+.local/
+.playwright-mcp/
+
+# Python sidecar (sidecar/) — virtualenvs belong outside the repo
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+
+# Postman environment files hold credentials — never commit
+*.postman_environment.json
+*.postman_collection.json
+
+# Replit platform metadata
+.replit
+replit.md
+
+# Agent orchestration and IDE assistance metadata (not project code)
+.agents/
+.claude/
+AGENTS.md
+GEMINI.md
+CLAUDE*.md
+ORCHESTRATOR.md
+CONTEXT_MEMORY.md
+toggle_orchestrator.sh
+*copy.md
+*.copy.md
+test-models.js
+setup-gemini.sh

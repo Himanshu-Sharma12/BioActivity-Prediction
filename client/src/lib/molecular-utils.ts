@@ -7,83 +7,7 @@ export function formatLogP(logP: number): string {
 }
 
 export function formatTPSA(tpsa: number): string {
-  return `${tpsa.toFixed(2)} Ų`;
-}
-
-export function formatPIC50(pic50: number): string {
-  return pic50.toFixed(2);
-}
-
-export function formatConfidence(confidence: number): string {
-  return `${Math.round(confidence * 100)}%`;
-}
-
-export function formatProbability(probability: number): string {
-  return `${Math.round(probability * 100)}%`;
-}
-
-export function getRiskColor(risk: 'LOW' | 'MEDIUM' | 'HIGH'): string {
-  switch (risk) {
-    case 'LOW':
-      return 'text-success';
-    case 'MEDIUM':
-      return 'text-warning';
-    case 'HIGH':
-      return 'text-destructive';
-    default:
-      return 'text-muted-foreground';
-  }
-}
-
-export function getRiskBgColor(risk: 'LOW' | 'MEDIUM' | 'HIGH'): string {
-  switch (risk) {
-    case 'LOW':
-      return 'bg-success';
-    case 'MEDIUM':
-      return 'bg-warning';
-    case 'HIGH':
-      return 'bg-destructive';
-    default:
-      return 'bg-muted';
-  }
-}
-
-export function getOverallRiskDisplay(risk: 'LOW' | 'MEDIUM' | 'HIGH'): { 
-  text: string; 
-  color: string; 
-  bgColor: string; 
-  icon: string; 
-} {
-  switch (risk) {
-    case 'LOW':
-      return {
-        text: 'LOW RISK',
-        color: 'text-success',
-        bgColor: 'bg-success/10 border-success/20',
-        icon: 'fas fa-check-circle',
-      };
-    case 'MEDIUM':
-      return {
-        text: 'MEDIUM RISK',
-        color: 'text-warning',
-        bgColor: 'bg-warning/10 border-warning/20',
-        icon: 'fas fa-exclamation-triangle',
-      };
-    case 'HIGH':
-      return {
-        text: 'HIGH RISK',
-        color: 'text-destructive',
-        bgColor: 'bg-destructive/10 border-destructive/20',
-        icon: 'fas fa-times-circle',
-      };
-    default:
-      return {
-        text: 'UNKNOWN',
-        color: 'text-muted-foreground',
-        bgColor: 'bg-muted/10 border-muted/20',
-        icon: 'fas fa-question-circle',
-      };
-  }
+  return `${tpsa.toFixed(2)} Å²`;
 }
 
 export function validateSMILES(smiles: string): boolean {
@@ -126,18 +50,35 @@ export function generateMolecularStructureDisplay(smiles: string): string {
   return commonStructures[smiles] || `Structure: ${smiles}`;
 }
 
+/**
+ * Display-name fallback for when a compound has no resolved name.
+ *
+ * This previously derived a molecular formula by regex-counting letters in the
+ * SMILES string, which counted the C in "Cl" as a carbon, missed lowercase
+ * aromatic atoms, and estimated hydrogens from the literal "H" characters — so
+ * chloroform rendered as "C4Cl". The real formula is computed server-side by
+ * RDKit and is available as `prediction.molecularFormula`; use that where a
+ * formula is actually wanted, rather than guessing one here.
+ */
 export function getMolecularName(smiles: string): string {
   const commonNames: Record<string, string> = {
-    'CCO': 'Ethanol',
-    'CC': 'Ethane',
     'C': 'Methane',
+    'CC': 'Ethane',
+    'CCC': 'Propane',
+    'CCCC': 'Butane',
     'O': 'Water',
     'CO': 'Methanol',
-    'CCC': 'Propane',
-    'C1=CC=CC=C1': 'Benzene',
-    'CC(=O)O': 'Acetic Acid',
+    'CCO': 'Ethanol',
     'CCN': 'Ethylamine',
+    'CC(=O)O': 'Acetic Acid',
+    'C1=CC=CC=C1': 'Benzene',
+    'c1ccccc1': 'Benzene',
+    'CN1C=NC2=C1C(=O)N(C(=O)N2C)C': 'Caffeine',
+    'CN1C=NC2=C1C(=O)N(C)C(=O)N2C': 'Caffeine',
+    'CC(C)Cc1ccc(cc1)C(C)C(=O)O': 'Ibuprofen',
+    'CC(=O)OC1=CC=CC=C1C(=O)O': 'Aspirin',
+    'CC(=O)Oc1ccccc1C(=O)O': 'Aspirin',
   };
-  
-  return commonNames[smiles] || 'Unknown Compound';
+
+  return commonNames[smiles.trim()] ?? 'Unnamed compound';
 }

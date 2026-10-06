@@ -1,0 +1,8 @@
+# Pinned to the SAME RDKit release line as the Node package (@rdkit/rdkit 2026.3.6),
+# so descriptors and alert catalogues stay consistent across the two runtimes.
+# Do not bump one without the other.
+rdkit==2026.3.6
+
+fastapi==0.115.6
+uvicorn[standard]==0.34.0
+pydantic==2.10.4

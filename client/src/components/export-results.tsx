@@ -1,6 +1,6 @@
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { Download, FileText, Code, FileImage } from "lucide-react";
+import { Download, FileText, Code, FileImage, ExternalLink } from "lucide-react";
 import { useMutation } from "@tanstack/react-query";
 import { apiRequest } from "@/lib/queryClient";
 import { useToast } from "@/hooks/use-toast";
@@ -99,16 +99,18 @@ export default function ExportResults({ analysis, disabled }: ExportResultsProps
           <Button
             variant="outline"
             className="w-full justify-between"
-            disabled={true}
+            onClick={() => window.open('/export', '_blank')}
             data-testid="button-export-pdf"
           >
             <div className="flex items-center">
               <div>
-                <div className="font-medium text-sm text-left">PDF Report</div>
-                <div className="text-xs text-muted-foreground text-left">Formatted document (Coming Soon)</div>
+                <div className="font-medium text-sm text-left flex items-center gap-1.5">
+                  Full Export & Dossier Center
+                </div>
+                <div className="text-xs text-muted-foreground text-left">Open PDF, Excel & Analytics in New Tab</div>
               </div>
             </div>
-            <FileImage className="h-5 w-5 text-primary" />
+            <ExternalLink className="h-5 w-5 text-primary" />
           </Button>
         </div>
       </CardContent>

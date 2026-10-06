@@ -54,7 +54,7 @@ export default function MolecularDescriptorsComponent({ descriptors, isLoading }
                 {descriptors ? descriptors.tpsa.toFixed(2) : '--'}
               </div>
             )}
-            <div className="text-sm text-muted-foreground">TPSA (Ų)</div>
+            <div className="text-sm text-muted-foreground">TPSA (Å²)</div>
             <div className="text-xs text-muted-foreground mt-1">Topological PSA</div>
           </div>
 

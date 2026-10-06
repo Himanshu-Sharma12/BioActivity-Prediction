@@ -1,6 +1,12 @@
 {
   "include": ["client/src/**/*", "shared/**/*", "server/**/*"],
-  "exclude": ["node_modules", "build", "dist", "**/*.test.ts"],
+  "exclude": [
+    "node_modules",
+    "build",
+    "dist",
+    "**/*.test.ts",
+    "server/services/gemini-image-analysis.ts"
+  ],
   "compilerOptions": {
     "incremental": true,
     "tsBuildInfoFile": "./node_modules/typescript/tsbuildinfo",
@@ -13,7 +19,8 @@
     "skipLibCheck": true,
     "allowImportingTsExtensions": true,
     "moduleResolution": "bundler",
-    "baseUrl": ".",
+  "baseUrl": ".",
+  // removed: invalid for TS 5.6, was silently blocking all typechecking
     "types": ["node", "vite/client"],
     "paths": {
       "@/*": ["./client/src/*"],

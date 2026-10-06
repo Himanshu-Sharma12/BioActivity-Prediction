@@ -1,0 +1,35 @@
+name: CI
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  build:
+    name: Typecheck, test, build
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js 20
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Typecheck
+        run: npx tsc --noEmit
+
+      # The suite is fully offline and needs no secrets: no GEMINI_API_KEY,
+      # no DATABASE_URL. Keep it that way — network-dependent tests belong
+      # behind an explicitly gated job.
+      - name: Test
+        run: npm test
+
+      - name: Build
+        run: npm run build
