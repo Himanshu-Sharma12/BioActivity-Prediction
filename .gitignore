@@ -30,6 +30,7 @@ replit.md
 .claude/
 AGENTS.md
 GEMINI.md
+GEMINI*.md
 CLAUDE*.md
 ORCHESTRATOR.md
 CONTEXT_MEMORY.md
